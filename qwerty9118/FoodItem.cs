@@ -18,9 +18,9 @@ public class FoodItem : MonoBehaviour
     {
 
         movement = GetComponent<PlayerMovement>();
-        Debug.Log(this.gameObject.name + cutLevel + cookedLevel);
+        //.Log("Food/" + this.gameObject.name + cutLevel + cookedLevel);
         this.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load(
-            this.gameObject.name + cutLevel + cookedLevel,
+            "Food/" + this.gameObject.name + cutLevel + cookedLevel,
             typeof(Sprite)) as Sprite;
 
     }
@@ -33,7 +33,7 @@ public class FoodItem : MonoBehaviour
         {
 
             this.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load(
-                this.gameObject.name + cutLevel + cookedLevel,
+                "Food/" + this.gameObject.name + cutLevel + cookedLevel,
                 typeof(Sprite)) as Sprite;
 
             oldCutLevel = cutLevel;
