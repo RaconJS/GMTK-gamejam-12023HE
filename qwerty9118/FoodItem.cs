@@ -7,13 +7,13 @@ public class FoodItem : MonoBehaviour
     [SerializeField] string id = "";
     [SerializeField] int cutLevel = 0;
     [SerializeField] int cookedLevel = 0;
-
-    public bool isMoving = false;//used by: SandwichItemHandler
+    public PlayerMovement movement;
+    public bool isMoving{get{return movement.enabled;}set{}}//used by: SandwichItemHandler
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        movement = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
