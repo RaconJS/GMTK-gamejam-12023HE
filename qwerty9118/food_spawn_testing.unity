@@ -559,7 +559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6767654229458006368, guid: bdbc4c5db5d9fab4896bc4c176c90462, type: 3}
       propertyPath: m_Name
-      value: Tomatoes
+      value: Tomato
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bdbc4c5db5d9fab4896bc4c176c90462, type: 3}
@@ -1028,7 +1028,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1783571187815995857, guid: 7d488465fe0904e4e98a4832977af903, type: 3}
       propertyPath: m_Name
-      value: Potatoes
+      value: Potato
       objectReference: {fileID: 0}
     - target: {fileID: 8697452342493803618, guid: 7d488465fe0904e4e98a4832977af903, type: 3}
       propertyPath: m_RootOrder
