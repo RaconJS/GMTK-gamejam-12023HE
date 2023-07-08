@@ -13,17 +13,6 @@ public class FoodItem : MonoBehaviour
     public bool isMoving{get{return movement.enabled;}set{}}//used by: SandwichItemHandler
     public bool isSelected;
     public int dontSelectFrames = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        movement = GetComponent<PlayerMovement>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(dontSelectFrames>0)dontSelectFrames--;
-    }
     public bool selectThisItem(FoodItem oldItem){//returns false if it failed
         if(dontSelectFrames>0)return false;
         if(oldItem){
@@ -54,7 +43,7 @@ public class FoodItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(dontSelectFrames>0)dontSelectFrames--;
         if (oldCutLevel != cutLevel || oldCookedLevel != cookedLevel)
         {
 
