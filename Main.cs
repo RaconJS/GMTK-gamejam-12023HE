@@ -5,7 +5,7 @@ using UnityEngine;
 public class Main : MonoBehaviour
 {
 
-    public string[] foods =
+    private string[] foods =
     {
         "Bacon",
         "Beef",
@@ -22,24 +22,67 @@ public class Main : MonoBehaviour
         "Potato",
         "Rice",
         "Tofu",
-        "Tomato",
+        "Tomato"
     };
+
+    private int currentIngredient = 0;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        //Resources.LoadAll("Food");
-
-        /*DirectoryInfo dir = new DirectoryInfo("Assets/Kazb0/Resources");
-        FileInfo[] info = dir.GetFiles("*.prefab");
-        foods = info.Select(f => f.FullName).ToArray();*/
+        for (int i = 1; i < foods.Length; i++)
+        {
+            Debug.Log(foods[i]);
+            GameObject.Find(foods[i]).GetComponent<PlayerMovement>().enabled = false;
+        }
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+        if (Input.mouseScrollDelta.y != 0)
+        {
+            if (Input.mouseScrollDelta.y > 0)
+            {
+                Debug.Log(currentIngredient);
+                Debug.Log(foods[currentIngredient]);
+
+                GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = false;
+
+                currentIngredient++;
+
+                if (currentIngredient >= foods.Length)
+                {
+                    currentIngredient = 0;
+                }
+
+                GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = true;
+
+            }
+            else
+            {
+                Debug.Log(currentIngredient);
+                Debug.Log(foods[currentIngredient]);
+
+                GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = false;
+
+                currentIngredient--;
+
+                if (currentIngredient < 0)
+                {
+                    currentIngredient = foods.Length - 1;
+                }
+
+                GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = true;
+
+            }
+
+
+
+        }
+
     }
 }

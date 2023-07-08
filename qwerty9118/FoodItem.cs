@@ -79,21 +79,21 @@ public class FoodItem : MonoBehaviour
                     if (cook == 1)
                     {
                         this.foodStateTextures[cut, cook] = this.foodStateTextures[cut, 0];
-                        this.genCook = true;
+                        genCook = true;
                         continue;
                     }
 
                     else if (cut == 1)
                     {
                         this.foodStateTextures[cut, cook] = this.foodStateTextures[0, cook];
-                        this.genCut1 = true;
+                        genCut1 = true;
                         continue;
                     }
 
                     else if (cut == 2)
                     {
                         this.foodStateTextures[cut, cook] = this.foodStateTextures[1, cook];
-                        this.genCut2 = true;
+                        genCut2 = true;
                         continue;
                     }
 
@@ -121,6 +121,18 @@ public class FoodItem : MonoBehaviour
         if (oldCutLevel != cutLevel || oldCookedLevel != cookedLevel)
         {
 
+            GetComponent<Renderer>().material.mainTextureScale = new Vector2(1f, 1f);
+            GetComponent<Renderer>().material.mainTextureOffset = new Vector2(1f, 1f);
+
+            if (cutLevel > 2)
+            {
+                Destroy(this);
+            }
+            if (cookedLevel > 1)
+            {
+                Destroy(this);
+            }
+
             this.gameObject.GetComponent<SpriteRenderer>().sprite = this.foodStateTextures[cutLevel, cookedLevel];
 
             if (genCook && cookedLevel == 1)
@@ -131,13 +143,13 @@ public class FoodItem : MonoBehaviour
             {
                 //this.gameObject.GetComponent<Material>().SetTextureScale(this.foodStateTextures[cutLevel, cookedLevel].name, new Vector2(0.7f, 0.6f));
                 //this.gameObject.GetComponent<Material>().SetTextureOffset(this.gameObject.name + cutLevel + cookedLevel, new Vector2(0.7f, 0.6f));
-                GetComponent<Renderer>().material.mainTextureScale = new Vector2(0.5f, 1f);
+                GetComponent<Renderer>().material.mainTextureScale = new Vector2(2f, 1f);
                 //GetComponent<Renderer>().material.mainTextureOffset = new Vector2(0.5f, 0f);
             }
-            if (genCut1 && cutLevel == 2)
+            if (genCut2 && cutLevel == 2)
             {
-                GetComponent<Renderer>().material.mainTextureScale = new Vector2(0.3f, 0.2f);
-                GetComponent<Renderer>().material.mainTextureOffset = new Vector2(0.7f, 0.8f);
+                GetComponent<Renderer>().material.mainTextureScale = new Vector2(4f, 5f);
+                //GetComponent<Renderer>().material.mainTextureOffset = new Vector2(0.7f, 0.8f);
             }
 
             oldCutLevel = cutLevel;
