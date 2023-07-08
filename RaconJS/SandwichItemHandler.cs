@@ -19,16 +19,17 @@ public class SandwichItemHandler : MonoBehaviour
 	}
 	void stackItem(SandwichItemHandler sandwichItem){
 		sandwichItem.gameObject.transform.parent = topOfSandwich.gameObject.transform;
-		topOfSandwich = sandwichItem;
 		sandwichItem.baseSandwich = this;
-		var newPos = sandwichItem.gameObject.transform.position;
-		newPos.z = topOfSandwich.gameObject.transform.position.z-1f;
-		sandwichItem.gameObject.transform.position = newPos;
+		var newPos = sandwichItem.gameObject.transform.localPosition;
+		newPos.z = -1;
+		sandwichItem.gameObject.transform.localPosition = newPos;
+		topOfSandwich = sandwichItem;
 	}
 	void unstackItem(SandwichItemHandler sandwichItem){
 		var parent = sandwichItem.gameObject.transform.parent = gameObject.transform.parent;
 		var newPos = sandwichItem.gameObject.transform.position;
 		newPos.z = parent?transform.parent.position.z-1f:transform.position.z;
+		Debug.Log("??");
 		sandwichItem.gameObject.transform.position = newPos;
 		sandwichItem.baseSandwich = null;
 	}
@@ -41,7 +42,7 @@ public class SandwichItemHandler : MonoBehaviour
 				isSandwichBase = true;
 				topOfSandwich = this;
 			}
-			if(isSandwichBase&&sandwichItem.baseSandwich!=this){
+			if(isSandwichBase&&baseSandwich!=sandwichItem){
 				stackItem(sandwichItem);
 			}
 		}
