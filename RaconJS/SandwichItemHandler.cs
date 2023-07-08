@@ -17,23 +17,31 @@ public class SandwichItemHandler : MonoBehaviour
 	{
 		foodItem = GetComponent<FoodItem>();
 	}
+	void stackItem(SandwichItemHandler sandwichItem){
+		sandwichItem.gameObject.transform.parent = topOfSandwich.gameObject.transform;
+		topOfSandwich = sandwichItem;
+		sandwichItem.baseSandwich = this;
+		var newPos = sandwichItem.gameObject.transform.position;
+		newPos.z = topOfSandwich.gameObject.transform.position.z-1f;
+		sandwichItem.gameObject.transform.position = newPos;
+	}
+	void unstackItem(SandwichItemHandler sandwichItem){
+		var parent = sandwichItem.gameObject.transform.parent = gameObject.transform.parent;
+		var newPos = sandwichItem.gameObject.transform.position;
+		newPos.z = parent?transform.parent.position.z-1f:transform.position.z;
+		sandwichItem.gameObject.transform.position = newPos;
+	}
 	private void OnTriggerEnter2D(Collider2D collision){
 		bool isReadyToBeStacked;
 		SandwichItemHandler sandwichItem=collision.gameObject.GetComponent<SandwichItemHandler>();
 		isReadyToBeStacked = sandwichItem!=null;
 		if(isReadyToBeStacked){
-			Debug.Log("isReadyToBeStacked");
-			Debug.Log(isBread);
-			Debug.Log(foodItem.isMoving);
 			if(isBread&&(!foodItem.isMoving)&&!sandwichItem.isSandwichBase&&!isSandwichBase){
 				isSandwichBase = true;
 				topOfSandwich = this;
 			}
 			if(isSandwichBase){
-				Debug.Log(topOfSandwich);
-				collision.gameObject.transform.parent = topOfSandwich.gameObject.transform;
-				topOfSandwich = sandwichItem;
-				sandwichItem.baseSandwich = this;
+				stackItem(sandwichItem);
 			}
 		}
 	}
@@ -41,7 +49,7 @@ public class SandwichItemHandler : MonoBehaviour
 		SandwichItemHandler sandwichItem=collision.gameObject.GetComponent<SandwichItemHandler>();
 		if(isSandwichBase)
 		if(sandwichItem&&sandwichItem.baseSandwich==this){//assume: collision.gameObject's parent has SandwichItemHandler
-			collision.gameObject.transform.parent = gameObject.transform.parent;
+			unstackItem(sandwichItem);
 			var parent = collision.gameObject.transform.parent;
 			if(parent){
 				topOfSandwich = parent.gameObject.GetComponent<SandwichItemHandler>();
@@ -56,7 +64,7 @@ public class SandwichItemHandler : MonoBehaviour
 	void Update()
 	{
 		if(foodItem.isMoving&&Input.GetKeyDown(placeItem_key)){
-
+			topOfSandwich.foodItem.selectThisItem(foodItem);
 		}
 	}
 }
