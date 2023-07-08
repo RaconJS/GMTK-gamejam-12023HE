@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fragile : MonoBehaviour
+public class Raw : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -16,14 +16,16 @@ public class Fragile : MonoBehaviour
 
         if (this.GetComponent<FoodItem>().getCookedLevel() > 0)
         {
-            Destroy(this.GetComponent<Fragile>());
+            Destroy(this.GetComponent<Raw>());
         }
 
-	}
+    }
 
-	private void OnTriggerEnter2D(Collider2D collision)
-	{
-        Destroy(this);
-	}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        collision.gameObject.AddComponent<Raw>();
+
+    }
 
 }
