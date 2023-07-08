@@ -27,7 +27,6 @@ public class SandwichItemHandler : MonoBehaviour
     		foreach(var foodItemId in sandwichRecipe.list)list[i--] = foodItemId;
     	}
     	foreach(var foodItemId in list){
-    		//Debug.Log(foodItemId);Debug.Log(transform.gameObject?.GetComponent<FoodItem>()?.id);Debug.Log("_______");
     		if(foodItemId != transform.gameObject.GetComponent<FoodItem>().id)return false;
     		transform = transform.parent;
     	}
@@ -40,7 +39,6 @@ public class SandwichItemHandler : MonoBehaviour
 		newPos.z = -1;
 		sandwichItem.gameObject.transform.localPosition = newPos;
 		topOfSandwich = sandwichItem;
-		if(sandwichItem==this)Debug.Log("BS");
 	}
 	void unstackItem(SandwichItemHandler sandwichItem){
 		var parent = sandwichItem.gameObject.transform.parent = gameObject.transform.parent;
@@ -61,7 +59,7 @@ public class SandwichItemHandler : MonoBehaviour
 		SandwichItemHandler sandwichItem=collision.gameObject.GetComponent<SandwichItemHandler>();
 		isReadyToBeStacked = sandwichItem!=null&&!sandwichItem.isSandwichBase&&!sandwichItem.baseSandwich;
 		if(isReadyToBeStacked){
-			if(isBread&&(!foodItem.isMoving)&&!sandwichItem.isSandwichBase&&!isSandwichBase){
+			if(isBread&&!foodItem.isMoving&&!sandwichItem.isSandwichBase&&!isSandwichBase){
 				isSandwichBase = true;
 				topOfSandwich = this;
 			}

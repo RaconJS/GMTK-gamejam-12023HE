@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    [Header("scenes")]
+    /*[SerializeField]*/string mainMenu;
+    /*[SerializeField]*/string mainGame;
+    public void startGame(){
+        SceneManager.LoadScene(SceneManager.GetSceneByName("mainGame").buildIndex);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void gotoMainMenu(){
+        SceneManager.LoadScene(SceneManager.GetSceneByName("mainMenu").buildIndex);
     }
 }
