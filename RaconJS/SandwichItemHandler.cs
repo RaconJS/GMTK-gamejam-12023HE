@@ -19,13 +19,13 @@ public class SandwichItemHandler : MonoBehaviour
 	}
     bool isRecipe(SandwichRecipe sandwichRecipe){
     	var transform = topOfSandwich.gameObject.transform;
-    	var list = new FoodItem[sandwichRecipe.foodItems.Length];
+    	var list = new string[sandwichRecipe.list.Length];
     	{//reverse list
     		int i = list.Length-1;
-    		foreach(var foodItem in sandwichRecipe.foodItems)list[i--] = foodItem;
+    		foreach(var foodItemId in sandwichRecipe.list)list[i--] = foodItemId;
     	}
-    	foreach(var foodItem in list){
-    		if(foodItem.id != transform.gameObject.GetComponent<FoodItem>().id)return false;
+    	foreach(var foodItemId in list){
+    		if(foodItemId != transform.gameObject.GetComponent<FoodItem>().id)return false;
     		transform = transform.parent;
     	}
     	return true;
@@ -45,6 +45,13 @@ public class SandwichItemHandler : MonoBehaviour
 		Debug.Log("??");
 		sandwichItem.gameObject.transform.position = newPos;
 		sandwichItem.baseSandwich = null;
+		var transform1 = sandwichItem.gameObject.transform;
+		while(transform1.childCount>0){
+			transform1 = transform1.GetChild(0);
+			SandwichItemHandler script;
+			if(script=transform1.GetComponent<SandwichItemHandler>())script.baseSandwich = sandwichItem;
+			else break;
+		}
 	}
 	private void OnTriggerEnter2D(Collider2D collision){
 		bool isReadyToBeStacked;
@@ -66,10 +73,12 @@ public class SandwichItemHandler : MonoBehaviour
 		if(sandwichItem&&sandwichItem.baseSandwich==this){//assume: collision.gameObject's parent has SandwichItemHandler
 			var parent = sandwichItem.gameObject.transform.parent;
 			unstackItem(sandwichItem);
-			Debug.Log(parent);
+			bool hasParent = false;
 			if(parent){
 				topOfSandwich = parent.gameObject.GetComponent<SandwichItemHandler>();
-			}else{
+				hasParent = topOfSandwich!=this;
+			}
+			if(!hasParent){
 				topOfSandwich = null;
 				isSandwichBase = false;
 			}
@@ -81,7 +90,6 @@ public class SandwichItemHandler : MonoBehaviour
 	{
 		//space -> select the bottom of the sandwich for moving
 		if(isSelecting){
-			Debug.Log(isSandwichBase);
 			if(isSandwichBase)
 				topOfSandwich.foodItem.selectThisItem(foodItem);
 			else if(baseSandwich)
