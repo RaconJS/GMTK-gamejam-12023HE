@@ -15,6 +15,22 @@ public class FoodItem : MonoBehaviour
     public PlayerMovement movement;
     public bool isMoving{get{return movement.enabled;}set{}}//used by: SandwichItemHandler
     public bool isSelected;
+    public int dontSelectFrames = 0;
+    public bool selectThisItem(FoodItem oldItem){//returns false if it failed
+        if(dontSelectFrames>0)return false;
+        if(oldItem){
+            oldItem.unselectThisItem(this);
+        }
+        isSelected = true;
+        isMoving = true;
+        movement.enabled=true;
+        return true;
+    }
+    private void unselectThisItem(FoodItem newItem){
+        isSelected = false;
+        isMoving = false;
+        movement.enabled=false;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -74,11 +90,10 @@ public class FoodItem : MonoBehaviour
         this.gameObject.GetComponent<SpriteRenderer>().sprite = ;
 
     }
-
     // Update is called once per frame
     void Update()
     {
-
+        if(dontSelectFrames>0)dontSelectFrames--;
         if (oldCutLevel != cutLevel || oldCookedLevel != cookedLevel)
         {
 
@@ -89,11 +104,6 @@ public class FoodItem : MonoBehaviour
 
         }
 
-    }
-
-    public void selectThisItem(){
-        isSelected = true;
-        isMoving = true;
     }
     public int getCutLevel()
     {
