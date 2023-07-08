@@ -30,6 +30,7 @@ public class SandwichItemHandler : MonoBehaviour
 		var newPos = sandwichItem.gameObject.transform.position;
 		newPos.z = parent?transform.parent.position.z-1f:transform.position.z;
 		sandwichItem.gameObject.transform.position = newPos;
+		sandwichItem.baseSandwich = null;
 	}
 	private void OnTriggerEnter2D(Collider2D collision){
 		bool isReadyToBeStacked;
@@ -49,11 +50,11 @@ public class SandwichItemHandler : MonoBehaviour
 		SandwichItemHandler sandwichItem=collision.gameObject.GetComponent<SandwichItemHandler>();
 		if(isSandwichBase)
 		if(sandwichItem&&sandwichItem.baseSandwich==this){//assume: collision.gameObject's parent has SandwichItemHandler
+			var parent = sandwichItem.gameObject.transform.parent;
 			unstackItem(sandwichItem);
-			var parent = collision.gameObject.transform.parent;
+			Debug.Log(parent);
 			if(parent){
 				topOfSandwich = parent.gameObject.GetComponent<SandwichItemHandler>();
-				sandwichItem.baseSandwich = null;
 			}else{
 				topOfSandwich = null;
 				isSandwichBase = false;
@@ -61,10 +62,20 @@ public class SandwichItemHandler : MonoBehaviour
 		}
 	}
 	// Update is called once per frame
+	bool isSelecting = false;
 	void Update()
 	{
+		//space -> select the bottom of the sandwich for moving
+		if(isSelecting){
+			Debug.Log(isSandwichBase);
+			if(isSandwichBase)
+				topOfSandwich.foodItem.selectThisItem(foodItem);
+			else if(baseSandwich)
+				baseSandwich.foodItem.selectThisItem(foodItem);
+			isSelecting = false;
+		}
 		if(foodItem.isMoving&&Input.GetKeyDown(placeItem_key)){
-			topOfSandwich.foodItem.selectThisItem(foodItem);
+			isSelecting = true;
 		}
 	}
 }
