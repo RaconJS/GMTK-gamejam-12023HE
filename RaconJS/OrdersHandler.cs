@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OrdersHandler : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class OrdersHandler : MonoBehaviour
 	public int score = 0;
 	[SerializeField]GameObject possibleOrders;
 	[SerializeField]GameObject orders;
+	[SerializeField]Text text;
+	[SerializeField]float waitInterval = 15;
 	void Start()
 	{
 		nextOrderTime = Time.time;
@@ -37,14 +40,17 @@ public class OrdersHandler : MonoBehaviour
 					{
 						Debug.Log("found recipe");
 						found = true;
+						break;
 					}
 				}
 			}
+			if(found)break;
 		}
 		if(found){
 			//TODO:add animation
 			Debug.Log(rootCompletedFood);
 			destoryEntireObject(rootCompletedFood);
+			Destroy(orders.transform.GetChild(i).gameObject);
 			score++;
 		}
 		else{
@@ -67,7 +73,8 @@ public class OrdersHandler : MonoBehaviour
 			}
 			else Instantiate(possibleOrders.transform.GetChild(Random.Range(0,possibleOrders.transform.childCount-1)),orders.transform);
 			//addOrder();
-			nextOrderTime =Time.time+1;
+			nextOrderTime =Time.time+waitInterval;
 		}
+		text.text = "score:"+score;
 	}
 }
