@@ -17,7 +17,9 @@ public class SandwichItemHandler : MonoBehaviour
 	{
 		foodItem = GetComponent<FoodItem>();
 	}
-    bool isRecipe(SandwichRecipe sandwichRecipe){
+    public bool isRecipe(SandwichRecipe sandwichRecipe){
+    	if(!isSandwichBase && baseSandwich)return baseSandwich.isRecipe(sandwichRecipe);
+    	if(!isSandwichBase)return false;//single item//baseSandwich.isRecipe(sandwichRecipe);
     	var transform = topOfSandwich.gameObject.transform;
     	var list = new string[sandwichRecipe.list.Length];
     	{//reverse list
@@ -25,6 +27,7 @@ public class SandwichItemHandler : MonoBehaviour
     		foreach(var foodItemId in sandwichRecipe.list)list[i--] = foodItemId;
     	}
     	foreach(var foodItemId in list){
+    		Debug.Log(foodItemId);Debug.Log(transform.gameObject.GetComponent<FoodItem>().id);Debug.Log("_______");
     		if(foodItemId != transform.gameObject.GetComponent<FoodItem>().id)return false;
     		transform = transform.parent;
     	}
@@ -42,7 +45,6 @@ public class SandwichItemHandler : MonoBehaviour
 		var parent = sandwichItem.gameObject.transform.parent = gameObject.transform.parent;
 		var newPos = sandwichItem.gameObject.transform.position;
 		newPos.z = parent?transform.parent.position.z-1f:transform.position.z;
-		Debug.Log("??");
 		sandwichItem.gameObject.transform.position = newPos;
 		sandwichItem.baseSandwich = null;
 		var transform1 = sandwichItem.gameObject.transform;
