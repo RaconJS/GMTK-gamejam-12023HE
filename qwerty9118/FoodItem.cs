@@ -9,7 +9,7 @@ public class FoodItem : MonoBehaviour
     [SerializeField] int cookedLevel = 0;
     public PlayerMovement movement;
     public bool isMoving{get{return movement.enabled;}set{}}//used by: SandwichItemHandler
-
+    public bool isSelected;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +19,11 @@ public class FoodItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
     }
-
+    public void selectThisItem(){
+        isSelected = true;
+        isMoving = true;
+    }
     public int getCutLevel()
     {
         return this.cutLevel;
