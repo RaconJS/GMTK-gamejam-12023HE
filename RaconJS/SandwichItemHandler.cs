@@ -19,7 +19,12 @@ public class SandwichItemHandler : MonoBehaviour
 	}
     bool isRecipe(SandwichRecipe sandwichRecipe){
     	var transform = topOfSandwich.gameObject.transform;
-    	foreach(var foodItem in sandwichRecipe.foodItems.Reverse()){
+    	var list = new FoodItem[sandwichRecipe.foodItems.Length];
+    	{//reverse list
+    		int i = list.Length-1;
+    		foreach(var foodItem in sandwichRecipe.foodItems)list[i--] = foodItem;
+    	}
+    	foreach(var foodItem in list){
     		if(foodItem.id != transform.gameObject.GetComponent<FoodItem>().id)return false;
     		transform = transform.parent;
     	}

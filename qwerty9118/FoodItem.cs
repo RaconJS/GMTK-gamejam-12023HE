@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FoodItem : MonoBehaviour
 {
-    [SerializeField] string id = "";
+    public string id = "";
     [SerializeField] int cutLevel = 0;
     [SerializeField] int cookedLevel = 0;
     private int oldCutLevel = 0;
@@ -87,7 +87,7 @@ public class FoodItem : MonoBehaviour
         }
 
         //.Log("Food/" + this.gameObject.name + cutLevel + cookedLevel);
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = ;
+        //this.gameObject.GetComponent<SpriteRenderer>().sprite = ;
 
     }
     // Update is called once per frame
