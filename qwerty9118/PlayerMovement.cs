@@ -20,10 +20,10 @@ public class PlayerMovement : MonoBehaviour
 
         varSpeed = speed * Time.deltaTime;
         
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W))
         {
 
-            if (Input.GetKey(KeyCode.DownArrow))
+            if (Input.GetKey(KeyCode.S))
             {
                 return;
             }
@@ -31,17 +31,17 @@ public class PlayerMovement : MonoBehaviour
             this.transform.position = this.transform.position + new Vector3(0, varSpeed, 0);
 
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.S))
         {
 
             this.transform.position = this.transform.position + new Vector3(0, -varSpeed, 0);
 
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A))
         {
 
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.D))
             {
                 return;
             }
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
             this.transform.position = this.transform.position + new Vector3(-varSpeed, 0, 0);
 
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.D))
         {
 
             this.transform.position = this.transform.position + new Vector3(varSpeed, 0, 0);

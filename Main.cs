@@ -43,46 +43,41 @@ public class Main : MonoBehaviour
     void Update()
     {
 
-        if (Input.mouseScrollDelta.y != 0)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (Input.mouseScrollDelta.y > 0)
+            Debug.Log("before: "+currentIngredient + " - " + foods[currentIngredient]);
+
+            GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = false;
+
+            currentIngredient++;
+
+            if (currentIngredient >= foods.Length)
             {
-                Debug.Log(currentIngredient);
-                Debug.Log(foods[currentIngredient]);
-
-                GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = false;
-
-                currentIngredient++;
-
-                if (currentIngredient >= foods.Length)
-                {
-                    currentIngredient = 0;
-                }
-
-                GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = true;
-
-            }
-            else
-            {
-                Debug.Log(currentIngredient);
-                Debug.Log(foods[currentIngredient]);
-
-                GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = false;
-
-                currentIngredient--;
-
-                if (currentIngredient < 0)
-                {
-                    currentIngredient = foods.Length - 1;
-                }
-
-                GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = true;
-
+                currentIngredient = 0;
             }
 
+            GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = true;
 
+            Debug.Log("after: " + currentIngredient + " - " + foods[currentIngredient]);
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Debug.Log("before: " + currentIngredient + " - " + foods[currentIngredient]);
 
+            GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = false;
+
+            currentIngredient--;
+
+            if (currentIngredient < 0)
+            {
+                currentIngredient = foods.Length - 1;
+            }
+
+            GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = true;
+
+            Debug.Log("after: " + currentIngredient + " - " + foods[currentIngredient]);
         }
 
     }
+
 }
