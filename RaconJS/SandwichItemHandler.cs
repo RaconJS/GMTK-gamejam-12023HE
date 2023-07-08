@@ -41,7 +41,7 @@ public class SandwichItemHandler : MonoBehaviour
 				isSandwichBase = true;
 				topOfSandwich = this;
 			}
-			if(isSandwichBase){
+			if(isSandwichBase&&sandwichItem.baseSandwich!=this){
 				stackItem(sandwichItem);
 			}
 		}
