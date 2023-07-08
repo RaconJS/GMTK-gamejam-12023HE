@@ -9,8 +9,12 @@ public class FoodItem : MonoBehaviour
     [SerializeField] int cookedLevel = 0;
     private int oldCutLevel = 0;
     private int oldCookedLevel = 0;
+    private bool genCut1 = false;
+    private bool genCut2 = false;
+    private bool genCook = false;
 
     private Sprite[,] foodStateTextures = new Sprite[3, 2];
+    SpriteRenderer foodRend;
 
     public PlayerMovement movement;
     public bool isMoving{get{return movement.enabled;}set{}}//used by: SandwichItemHandler
@@ -37,7 +41,9 @@ public class FoodItem : MonoBehaviour
     {
 
         movement = GetComponent<PlayerMovement>();
+        foodRend = GetComponent<SpriteRenderer>();
 
+        /*
         this.foodStateTextures[0,0] = Resources.Load(
             "Food/" + this.gameObject.name + "00",
             typeof(Sprite)) as Sprite;
@@ -56,6 +62,7 @@ public class FoodItem : MonoBehaviour
         this.foodStateTextures[2, 1] = Resources.Load(
             "Food/" + this.gameObject.name + "21",
             typeof(Sprite)) as Sprite;
+        */
 
         for (int cut = 0; cut < 3; cut++)
         {
@@ -69,16 +76,33 @@ public class FoodItem : MonoBehaviour
                 if (this.foodStateTextures[cut, cook] == null)
                 {
 
-                    if (cut + cook == 0)
+                    if (cook == 1)
+                    {
+                        this.foodStateTextures[cut, cook] = this.foodStateTextures[cut, 0];
+                        this.genCook = true;
+                        continue;
+                    }
+
+                    else if (cut == 1)
+                    {
+                        this.foodStateTextures[cut, cook] = this.foodStateTextures[0, cook];
+                        this.genCut1 = true;
+                        continue;
+                    }
+
+                    else if (cut == 2)
+                    {
+                        this.foodStateTextures[cut, cook] = this.foodStateTextures[1, cook];
+                        this.genCut2 = true;
+                        continue;
+                    }
+
+                    else
                     {
                         this.foodStateTextures[cut, cook] = Resources.Load(
                             "Food/GenericFoodItem00",
                             typeof(Sprite)) as Sprite;
-                    }
-
-                    else if (cook == 0)
-                    {
-
+                        continue;
                     }
 
                 }
@@ -87,7 +111,7 @@ public class FoodItem : MonoBehaviour
         }
 
         //.Log("Food/" + this.gameObject.name + cutLevel + cookedLevel);
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = ;
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = this.foodStateTextures[0, 0];
 
     }
     // Update is called once per frame
@@ -98,6 +122,23 @@ public class FoodItem : MonoBehaviour
         {
 
             this.gameObject.GetComponent<SpriteRenderer>().sprite = this.foodStateTextures[cutLevel, cookedLevel];
+
+            if (genCook && cookedLevel == 1)
+            {
+                foodRend.color = new Color(0.5f, 0.5f, 0.5f);
+            }
+            if (genCut1 && cutLevel == 1)
+            {
+                //this.gameObject.GetComponent<Material>().SetTextureScale(this.foodStateTextures[cutLevel, cookedLevel].name, new Vector2(0.7f, 0.6f));
+                //this.gameObject.GetComponent<Material>().SetTextureOffset(this.gameObject.name + cutLevel + cookedLevel, new Vector2(0.7f, 0.6f));
+                GetComponent<Renderer>().material.mainTextureScale = new Vector2(0.5f, 1f);
+                //GetComponent<Renderer>().material.mainTextureOffset = new Vector2(0.5f, 0f);
+            }
+            if (genCut1 && cutLevel == 2)
+            {
+                GetComponent<Renderer>().material.mainTextureScale = new Vector2(0.3f, 0.2f);
+                GetComponent<Renderer>().material.mainTextureOffset = new Vector2(0.7f, 0.8f);
+            }
 
             oldCutLevel = cutLevel;
             oldCookedLevel = cookedLevel;
