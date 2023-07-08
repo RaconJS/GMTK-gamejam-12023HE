@@ -17,6 +17,14 @@ public class SandwichItemHandler : MonoBehaviour
 	{
 		foodItem = GetComponent<FoodItem>();
 	}
+    bool isRecipe(SandwichRecipe sandwichRecipe){
+    	var transform = topOfSandwich.gameObject.transform;
+    	foreach(var foodItem in sandwichRecipe.foodItems.Reverse()){
+    		if(foodItem.id != transform.gameObject.GetComponent<FoodItem>().id)return false;
+    		transform = transform.parent;
+    	}
+    	return true;
+    }
 	void stackItem(SandwichItemHandler sandwichItem){
 		sandwichItem.gameObject.transform.parent = topOfSandwich.gameObject.transform;
 		sandwichItem.baseSandwich = this;
