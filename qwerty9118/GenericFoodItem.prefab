@@ -135,6 +135,7 @@ MonoBehaviour:
   cookedLevel: 0
   movement: {fileID: 0}
   isSelected: 0
+  dontSelectFrames: 0
 --- !u!114 &8662955008452556666
 MonoBehaviour:
   m_ObjectHideFlags: 0
