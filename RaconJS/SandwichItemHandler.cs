@@ -27,7 +27,7 @@ public class SandwichItemHandler : MonoBehaviour
     		foreach(var foodItemId in sandwichRecipe.list)list[i--] = foodItemId;
     	}
     	foreach(var foodItemId in list){
-    		Debug.Log(foodItemId);Debug.Log(transform.gameObject.GetComponent<FoodItem>().id);Debug.Log("_______");
+    		//Debug.Log(foodItemId);Debug.Log(transform.gameObject?.GetComponent<FoodItem>()?.id);Debug.Log("_______");
     		if(foodItemId != transform.gameObject.GetComponent<FoodItem>().id)return false;
     		transform = transform.parent;
     	}
@@ -58,7 +58,7 @@ public class SandwichItemHandler : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision){
 		bool isReadyToBeStacked;
 		SandwichItemHandler sandwichItem=collision.gameObject.GetComponent<SandwichItemHandler>();
-		isReadyToBeStacked = sandwichItem!=null;
+		isReadyToBeStacked = sandwichItem!=null && (foodItem.isMoving||isSandwichBase||(!isSandwichBase&&!baseSandwich));
 		if(isReadyToBeStacked){
 			if(isBread&&(!foodItem.isMoving)&&!sandwichItem.isSandwichBase&&!isSandwichBase){
 				isSandwichBase = true;
