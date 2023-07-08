@@ -51,9 +51,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2981835002078473362, guid: 9ddf7e21b5db5e04985cb6391e03a658, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b99fcbe73ad69b3468ecbc5f3d178d57, type: 3}
     - target: {fileID: 9135841323767298317, guid: 9ddf7e21b5db5e04985cb6391e03a658, type: 3}
       propertyPath: m_Name
-      value: Potatoes
+      value: Potato
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ddf7e21b5db5e04985cb6391e03a658, type: 3}
