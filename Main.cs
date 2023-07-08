@@ -31,11 +31,11 @@ public class Main : MonoBehaviour
     void Start()
     {
 
-        for (int i = 1; i < foods.Length; i++)
+        /*for (int i = 1; i < foods.Length; i++)
         {
             Debug.Log(foods[i]);
             GameObject.Find(foods[i]).GetComponent<PlayerMovement>().enabled = false;
-        }
+        }*/
         
     }
 
