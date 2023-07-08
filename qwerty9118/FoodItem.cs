@@ -20,9 +20,16 @@ public class FoodItem : MonoBehaviour
     void Update()
     {
     }
-    public void selectThisItem(){
+    public void selectThisItem(FoodItem oldItem){
+        if(oldItem){
+            oldItem.unselectThisItem(this);
+        }
         isSelected = true;
         isMoving = true;
+    }
+    private void unselectThisItem(FoodItem newItem){
+        isSelected = false;
+        isMoving = false;
     }
     public int getCutLevel()
     {
