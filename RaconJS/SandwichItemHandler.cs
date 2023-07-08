@@ -7,7 +7,7 @@ public class SandwichItemHandler : MonoBehaviour
 	// Start is called before the first frame update
 	public SandwichItemHandler baseSandwich = null;//only on sandwich non-bases
 	PlayerMovement a;
-	bool isSandwichBase = false;//is true if this is the bottom of the sandwich and there are items on top of this
+	[SerializeField]bool isSandwichBase = false;//is true if this is the bottom of the sandwich and there are items on top of this
 	public SandwichItemHandler topOfSandwich = null;//only on sandwich bases
 	[SerializeField]bool isBread;
 	KeyCode placeItem_key = KeyCode.Space;
@@ -27,7 +27,6 @@ public class SandwichItemHandler : MonoBehaviour
     		foreach(var foodItemId in sandwichRecipe.list)list[i--] = foodItemId;
     	}
     	foreach(var foodItemId in list){
-    		Debug.Log(foodItemId);Debug.Log(transform.gameObject.GetComponent<FoodItem>().id);Debug.Log("_______");
     		if(foodItemId != transform.gameObject.GetComponent<FoodItem>().id)return false;
     		transform = transform.parent;
     	}
@@ -58,12 +57,13 @@ public class SandwichItemHandler : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision){
 		bool isReadyToBeStacked;
 		SandwichItemHandler sandwichItem=collision.gameObject.GetComponent<SandwichItemHandler>();
-		isReadyToBeStacked = sandwichItem!=null;
+		isReadyToBeStacked = sandwichItem!=null&&!sandwichItem.isSandwichBase&&!sandwichItem.baseSandwich;
 		if(isReadyToBeStacked){
-			if(isBread&&(!foodItem.isMoving)&&!sandwichItem.isSandwichBase&&!isSandwichBase){
+			if(isBread&&!foodItem.isMoving&&!sandwichItem.isSandwichBase&&!isSandwichBase){
 				isSandwichBase = true;
 				topOfSandwich = this;
 			}
+			//foodItem.isMoving||isSandwichBase||
 			if(isSandwichBase&&baseSandwich!=sandwichItem){
 				stackItem(sandwichItem);
 			}
