@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2311875427867553175
+--- !u!1001 &2531743093371717741
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -13,11 +13,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2214096594123642046, guid: 9ddf7e21b5db5e04985cb6391e03a658, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.3750813
+      value: 6.4660435
       objectReference: {fileID: 0}
     - target: {fileID: 2214096594123642046, guid: 9ddf7e21b5db5e04985cb6391e03a658, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.4442198
+      value: 3.4738617
       objectReference: {fileID: 0}
     - target: {fileID: 2214096594123642046, guid: 9ddf7e21b5db5e04985cb6391e03a658, type: 3}
       propertyPath: m_LocalPosition.z
@@ -54,27 +54,10 @@ PrefabInstance:
     - target: {fileID: 2981835002078473362, guid: 9ddf7e21b5db5e04985cb6391e03a658, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ed260ce22aa76b34691a63de1162d2ae, type: 3}
+      objectReference: {fileID: 21300000, guid: 4abda2e7b7ba05248a5410620a442285, type: 3}
     - target: {fileID: 9135841323767298317, guid: 9ddf7e21b5db5e04985cb6391e03a658, type: 3}
       propertyPath: m_Name
-      value: Beef
+      value: Tomato
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ddf7e21b5db5e04985cb6391e03a658, type: 3}
---- !u!1 &6835454007868396698 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9135841323767298317, guid: 9ddf7e21b5db5e04985cb6391e03a658, type: 3}
-  m_PrefabInstance: {fileID: 2311875427867553175}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &302041229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6835454007868396698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b3c82316ea6b184c9793e9e9f7ffc83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

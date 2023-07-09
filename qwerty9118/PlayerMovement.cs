@@ -11,12 +11,19 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        GetComponent<FoodItem>().setId(gameObject.name);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (GetComponent<CircleCollider2D>().enabled)
+        {
+            GetComponent<CircleCollider2D>().enabled = false;
+        }
 
         varSpeed = speed * Time.deltaTime;
 

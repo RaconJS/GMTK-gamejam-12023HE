@@ -186,6 +186,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2981835002078473362, guid: 9ddf7e21b5db5e04985cb6391e03a658, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9135841323767298317, guid: 9ddf7e21b5db5e04985cb6391e03a658, type: 3}
       propertyPath: m_Name
       value: GenericFoodItem

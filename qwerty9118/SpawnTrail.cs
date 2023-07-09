@@ -36,13 +36,11 @@ public class SpawnTrail : MonoBehaviour
             if (frameCount > framesForNPC)
             {
                 frameCount = 0;
-                GameObject npcFood = Instantiate(this.gameObject, firstPos, Quaternion.identity);
+                GameObject npcFood = Instantiate(Resources.Load("FoodItems/" + this.gameObject.name) as GameObject, firstPos, Quaternion.identity);
                 npcFood.GetComponent<PlayerMovement>().enabled = false;
                 npcFood.GetComponent<SpawnTrail>().enabled = false;
                 npcFood.GetComponent<NPCMovement>().enabled = true;
-                npcFood.GetComponent<CircleCollider2D>().enabled = true;
                 npcFood.GetComponent<NPCMovement>().parentName = this.gameObject.name;
-                npcFood.GetComponent<FoodItem>().id = this.gameObject.name;
                 npcFood.transform.parent = transform.parent;
                 //npcFood.tag = this.gameObject.name;
                 npcFoods.Add(npcFood);

@@ -43,35 +43,10 @@ public class FoodItem : MonoBehaviour
         if(foodItem.cutLevel!=foodItem.cutLevel)return false;
         return true;
     }
-    // Start is called before the first frame update
-    void Start()
+
+    public void setId(string theId)
     {
-
-        id = gameObject.name;
-
-        movement = GetComponent<PlayerMovement>();
-        foodRend = GetComponent<SpriteRenderer>();
-
-        /*
-        this.foodStateTextures[0,0] = Resources.Load(
-            "Food/" + this.gameObject.name + "00",
-            typeof(Sprite)) as Sprite;
-        this.foodStateTextures[1, 0] = Resources.Load(
-            "Food/" + this.gameObject.name + "10",
-            typeof(Sprite)) as Sprite;
-        this.foodStateTextures[2, 0] = Resources.Load(
-            "Food/" + this.gameObject.name + "20",
-            typeof(Sprite)) as Sprite;
-        this.foodStateTextures[0, 1] = Resources.Load(
-            "Food/" + this.gameObject.name + "01",
-            typeof(Sprite)) as Sprite;
-        this.foodStateTextures[1, 1] = Resources.Load(
-            "Food/" + this.gameObject.name + "11",
-            typeof(Sprite)) as Sprite;
-        this.foodStateTextures[2, 1] = Resources.Load(
-            "Food/" + this.gameObject.name + "21",
-            typeof(Sprite)) as Sprite;
-        */
+        id = theId;
 
         for (int cut = 0; cut < 3; cut++)
         {
@@ -117,15 +92,26 @@ public class FoodItem : MonoBehaviour
                 }
 
             }
+
         }
 
         //.Log("Food/" + this.gameObject.name + cutLevel + cookedLevel);
         this.gameObject.GetComponent<SpriteRenderer>().sprite = this.foodStateTextures[0, 0];
 
     }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+        movement = GetComponent<PlayerMovement>();
+        foodRend = GetComponent<SpriteRenderer>();
+
+    }
     // Update is called once per frame
     void Update()
     {
+        if(id == null)
         if(dontSelectFrames>0)dontSelectFrames--;
         if (oldCutLevel != cutLevel || oldCookedLevel != cookedLevel)
         {

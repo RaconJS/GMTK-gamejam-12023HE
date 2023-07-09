@@ -15,13 +15,18 @@ public class NPCMovement : MonoBehaviour
     void Start()
     {
 
-        //step = (GameObject.Find(parentName).GetComponent<SpawnTrail>().trail[nextPoint] - transform.position) / framesForTrail;
+        GetComponent<FoodItem>().setId(parentName);
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (!GetComponent<CircleCollider2D>().enabled)
+        {
+            GetComponent<CircleCollider2D>().enabled = true;
+        }
 
         //if parent fooditem is moving, or parent fooditem has moved and switched control, move
         if
