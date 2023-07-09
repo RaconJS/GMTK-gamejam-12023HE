@@ -24,7 +24,6 @@ public class Main : MonoBehaviour
         "Pepper",
         "Tofu"
     };
-
     private int currentIngredient = 0;
 
     // Start is called before the first frame update
