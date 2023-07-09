@@ -7,22 +7,22 @@ public class Main : MonoBehaviour
 
     private string[] foods =
     {
-        "Bacon",
-        "Beef",
         "Bread",
-        "Chicken",
-        "Cucumber",
-        "Egg",
-        "Leek",
         "Lettuce",
-        "Onion",
-        "Pasta",
-        "Peas",
-        "Pepper",
+        "Tomato",
+        "Egg",
+        "Beef",
+        "Bacon",
+        "Chicken",
         "Potato",
         "Rice",
-        "Tofu",
-        "Tomato"
+        "Pasta",
+        "Cucumber",
+        "Leek",
+        "Onion",
+        "Peas",
+        "Pepper",
+        "Tofu"
     };
 
     private int currentIngredient = 0;
@@ -31,12 +31,11 @@ public class Main : MonoBehaviour
     void Start()
     {
 
-        /*for (int i = 1; i < foods.Length; i++)
-        {
-            Debug.Log(foods[i]);
-            GameObject.Find(foods[i]).GetComponent<PlayerMovement>().enabled = false;
-        }*/
-        
+        GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = true;
+        GameObject.Find(foods[currentIngredient]).GetComponent<SpawnTrail>().StartTrail();
+
+        Debug.Log("start: " + currentIngredient + " - " + foods[currentIngredient]);
+
     }
 
     // Update is called once per frame
@@ -48,6 +47,8 @@ public class Main : MonoBehaviour
             //Debug.Log("before: "+currentIngredient + " - " + foods[currentIngredient]);
 
             GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = false;
+            GameObject.Find(foods[currentIngredient]).GetComponent<SpawnTrail>().StopTrail();
+            GameObject.Find(foods[currentIngredient]).transform.position = GameObject.Find(foods[currentIngredient]).GetComponent<SpawnTrail>().firstPos;
 
             currentIngredient++;
 
@@ -57,6 +58,7 @@ public class Main : MonoBehaviour
             }
 
             GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = true;
+            GameObject.Find(foods[currentIngredient]).GetComponent<SpawnTrail>().RestartTrail();
 
             Debug.Log("after: " + currentIngredient + " - " + foods[currentIngredient]);
         }
@@ -65,6 +67,8 @@ public class Main : MonoBehaviour
             //Debug.Log("before: " + currentIngredient + " - " + foods[currentIngredient]);
 
             GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = false;
+            GameObject.Find(foods[currentIngredient]).GetComponent<SpawnTrail>().StopTrail();
+            GameObject.Find(foods[currentIngredient]).transform.position = GameObject.Find(foods[currentIngredient]).GetComponent<SpawnTrail>().firstPos;
 
             currentIngredient--;
 
@@ -74,6 +78,7 @@ public class Main : MonoBehaviour
             }
 
             GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = true;
+            GameObject.Find(foods[currentIngredient]).GetComponent<SpawnTrail>().RestartTrail();
 
             Debug.Log("after: " + currentIngredient + " - " + foods[currentIngredient]);
         }

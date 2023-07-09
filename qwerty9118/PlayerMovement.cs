@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float speed = 5.5f;
     private float varSpeed = 0;
-    private int x, y;
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +20,9 @@ public class PlayerMovement : MonoBehaviour
 
         varSpeed = speed * Time.deltaTime;
 
+        int x = 0, y = 0;
 
-        /*if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
             y++;
         }
@@ -39,46 +39,7 @@ public class PlayerMovement : MonoBehaviour
             x++;
         }
 
-        this.transform.position += new Vector3(x, y, 0);*/
-
-
-
-
-        if (Input.GetKey(KeyCode.W))
-        {
-
-            if (Input.GetKey(KeyCode.S))
-            {
-                return;
-            }
-
-            this.transform.position = this.transform.position + new Vector3(0, varSpeed, 0);
-
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-
-            this.transform.position = this.transform.position + new Vector3(0, -varSpeed, 0);
-
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-
-            if (Input.GetKey(KeyCode.D))
-            {
-                return;
-            }
-
-            this.transform.position = this.transform.position + new Vector3(-varSpeed, 0, 0);
-
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-
-            this.transform.position = this.transform.position + new Vector3(varSpeed, 0, 0);
-
-        }
+        this.transform.position += Vector3.Normalize(new Vector3(x, y, 0)) * varSpeed;
 
     }
 }
