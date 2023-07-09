@@ -45,7 +45,7 @@ public class Main : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("before: "+currentIngredient + " - " + foods[currentIngredient]);
+            //Debug.Log("before: "+currentIngredient + " - " + foods[currentIngredient]);
 
             GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = false;
 
@@ -62,7 +62,7 @@ public class Main : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            Debug.Log("before: " + currentIngredient + " - " + foods[currentIngredient]);
+            //Debug.Log("before: " + currentIngredient + " - " + foods[currentIngredient]);
 
             GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = false;
 

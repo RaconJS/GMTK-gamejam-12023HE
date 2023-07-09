@@ -51,6 +51,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2981835002078473362, guid: 9ddf7e21b5db5e04985cb6391e03a658, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4d30add3ec4e12644ad3ff659ac642d7, type: 3}
     - target: {fileID: 9135841323767298317, guid: 9ddf7e21b5db5e04985cb6391e03a658, type: 3}
       propertyPath: m_Name
       value: Bread

@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float speed = 5.5f;
     private float varSpeed = 0;
+    private int x, y;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,30 @@ public class PlayerMovement : MonoBehaviour
     {
 
         varSpeed = speed * Time.deltaTime;
-        
+
+
+        /*if (Input.GetKey(KeyCode.W))
+        {
+            y++;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            x--;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            y--;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            x++;
+        }
+
+        this.transform.position += new Vector3(x, y, 0);*/
+
+
+
+
         if (Input.GetKey(KeyCode.W))
         {
 
