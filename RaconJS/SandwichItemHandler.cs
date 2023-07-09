@@ -58,7 +58,7 @@ public class SandwichItemHandler : MonoBehaviour
 				&&(!sandwichItem.transform.parent||sandwichItem.transform.parent.gameObject.GetComponent<SandwichItemHandler>()==null)
 				&&sandwichItem.transform.childCount==0
 				&&sandwichItem.transform.parent!=transform
-				&&transform.GetChild(transform.childCount-1).GetComponent<FoodItem>().id != sandwichItem.foodItem.id
+				&&(transform.childCount==0 || transform.GetChild(transform.childCount-1).GetComponent<FoodItem>().id != sandwichItem.foodItem.id)
 			){
 				stackItem(sandwichItem.foodItem);
 			}
