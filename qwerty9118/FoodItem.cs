@@ -6,8 +6,8 @@ public class FoodItem : MonoBehaviour
 {
     [Header("foodStates")]
     public string id = "";
-    [SerializeField] int cutLevel = 0;
-    [SerializeField] int cookedLevel = 0;
+    public int cutLevel = 0;
+    public int cookedLevel = 0;
 
     private int oldCutLevel = 0;
     private int oldCookedLevel = 0;

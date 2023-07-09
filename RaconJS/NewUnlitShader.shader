@@ -51,6 +51,8 @@ Shader "Unlit/NewUnlitShader"
                 fixed2 c,z;
                 c = (i.uv-fixed2(0.75,0.5))*2;
                 z = fixed2(0,0);
+                fixed4 col1 = fixed4(105,117,142,0)/255;//blood
+                fixed4 col2 = fixed4(137,72,93,0)/255;
                 float reps = 50.0;
                 for(float i = 0.0;i<reps;++i){
                     if(dot(z,z)>2)break;{
@@ -58,8 +60,8 @@ Shader "Unlit/NewUnlitShader"
                     z = fixed2(z.x*z.x-z.y*z.y,2.0*z.x*z.y)+c;
                 }
                 if(i == reps){
-                    col = fixed4(0,0,0,0);
-                }else col = fixed4(1,1,1,0);
+                    col = col2;
+                }else col = col1;
 
                 // apply fog
                 //UNITY_APPLY_FOG(i.fogCoord, col);

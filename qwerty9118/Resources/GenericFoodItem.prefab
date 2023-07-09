@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8452159134806995438}
   - component: {fileID: -3355135971969901077}
   - component: {fileID: -7824330984965800429}
+  - component: {fileID: 6415774761478826151}
   m_Layer: 0
   m_Name: GenericFoodItem
   m_TagString: Untagged
@@ -200,3 +201,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentName: 
+--- !u!114 &6415774761478826151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9135841323767298317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3182120b0e24b6a18698492c371624e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
