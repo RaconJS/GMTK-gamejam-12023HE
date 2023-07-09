@@ -15,7 +15,7 @@ public class NPCMovement : MonoBehaviour
     void Start()
     {
 
-        step = (GameObject.Find(parentName).GetComponent<SpawnTrail>().trail[nextPoint] - transform.position) / framesForTrail;
+        //step = (GameObject.Find(parentName).GetComponent<SpawnTrail>().trail[nextPoint] - transform.position) / framesForTrail;
 
     }
 
