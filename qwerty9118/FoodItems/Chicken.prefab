@@ -57,7 +57,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: be0b5d891bd9d624a91d7d9e32360210, type: 3}
     - target: {fileID: 9135841323767298317, guid: 9ddf7e21b5db5e04985cb6391e03a658, type: 3}
       propertyPath: m_Name
-      value: Chicken Variant
+      value: Chicken
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ddf7e21b5db5e04985cb6391e03a658, type: 3}
