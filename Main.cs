@@ -48,7 +48,7 @@ public class Main : MonoBehaviour
 
             GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = false;
             GameObject.Find(foods[currentIngredient]).GetComponent<SpawnTrail>().StopTrail();
-            GameObject.Find(foods[currentIngredient]).transform.position = GameObject.Find(foods[currentIngredient]).GetComponent<SpawnTrail>().firstPos;
+            //GameObject.Find(foods[currentIngredient]).transform.position = GameObject.Find(foods[currentIngredient]).GetComponent<SpawnTrail>().firstPos;
 
             currentIngredient++;
 
@@ -68,7 +68,7 @@ public class Main : MonoBehaviour
 
             GameObject.Find(foods[currentIngredient]).GetComponent<PlayerMovement>().enabled = false;
             GameObject.Find(foods[currentIngredient]).GetComponent<SpawnTrail>().StopTrail();
-            GameObject.Find(foods[currentIngredient]).transform.position = GameObject.Find(foods[currentIngredient]).GetComponent<SpawnTrail>().firstPos;
+            //GameObject.Find(foods[currentIngredient]).transform.position = GameObject.Find(foods[currentIngredient]).GetComponent<SpawnTrail>().firstPos;
 
             currentIngredient--;
 

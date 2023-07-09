@@ -24,7 +24,10 @@ public class Raw : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        collision.gameObject.AddComponent<Raw>();
+        if (collision.gameObject.GetComponent<Raw>() == null)
+        {
+            collision.gameObject.AddComponent<Raw>();
+        }
 
     }
 

@@ -31,7 +31,7 @@ public class SpawnTrail : MonoBehaviour
     void Update()
     {
 
-        if ((hasMoved && !toggle) || resetTrail)
+        if ((hasMoved && !toggle))// || resetTrail)
         {
             if (frameCount > framesForNPC)
             {
@@ -75,6 +75,8 @@ public class SpawnTrail : MonoBehaviour
 
                 if (resetTrail)
                 {
+
+                    transform.position = firstPos;
 
                     resetTrail = false;
                     for (int i = 0; i < npcFoods.Count; i++)
