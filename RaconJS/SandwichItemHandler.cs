@@ -17,13 +17,18 @@ public class SandwichItemHandler : MonoBehaviour
 	{
 		foodItem = GetComponent<FoodItem>();
 	}
-    public bool isRecipe(SandwichRecipe sandwichRecipe){
-    	if(sandwichRecipe.list.Length!=transform.childCount)return false;
-    	for(var i=0;i<sandwichRecipe.list.Length;++i){
-    		var foodItem_recipe = sandwichRecipe.list[i];
-    		var foodItem_sandwich = transform.GetChild(i).GetComponent<FoodItem>();
+    public bool isRecipe(GameObject sandwichRecipe){
+    	if(sandwichRecipe.transform.childCount!=transform.childCount+1)return false;
+    	Debug.Log(0);
+    	for(var i=0;i<transform.childCount+1;i++){
+    		var foodItem_recipe = sandwichRecipe.transform.GetChild(i).GetComponent<FoodItem>();
+    		FoodItem foodItem_sandwich;
+    		if(i==0)foodItem_sandwich = foodItem;
+    		else foodItem_sandwich = transform.GetChild(i-1).GetComponent<FoodItem>();
+    	Debug.Log(foodItem_sandwich.id);
     		if(foodItem_recipe.id != foodItem_sandwich.id)return false;
     	}
+    	Debug.Log(2);
     	return true;
     }
     public GameObject getRootObj(){
