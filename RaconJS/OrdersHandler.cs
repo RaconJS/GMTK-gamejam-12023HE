@@ -71,7 +71,7 @@ public class OrdersHandler : MonoBehaviour
 			foodObj.GetComponent<Collider2D>().enabled = false;
 			foodObj.GetComponent<SpriteRenderer>().enabled = true;
 			float xScale = 1f;
-			foodPos.localPosition=new Vector3((orders.transform.childCount-1)*xScale,i*1f,-1);
+			foodPos.localPosition=new Vector3(i*1f,(orders.transform.childCount-1)*1.2f,6);
 		}
 	}
 	void FixedUpdate(){
