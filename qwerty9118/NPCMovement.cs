@@ -55,4 +55,11 @@ public class NPCMovement : MonoBehaviour
 
     }
 
+    private void OnBecameInvisible()
+    {
+
+        Destroy(gameObject);
+
+    }
+
 }

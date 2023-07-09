@@ -42,4 +42,12 @@ public class PlayerMovement : MonoBehaviour
         this.transform.position += Vector3.Normalize(new Vector3(x, y, 0)) * varSpeed;
 
     }
+
+    private void OnBecameInvisible()
+    {
+
+        transform.position = new Vector2(0,0);
+
+    }
+
 }
