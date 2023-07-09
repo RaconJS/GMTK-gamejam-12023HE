@@ -53,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnBecameInvisible()
     {
 
-        transform.position = new Vector2(0,0);
+        transform.position *= 0.9f;
 
     }
 
