@@ -41,6 +41,7 @@ public class SpawnTrail : MonoBehaviour
                 npcFood.GetComponent<SpawnTrail>().enabled = false;
                 npcFood.GetComponent<NPCMovement>().enabled = true;
                 npcFood.GetComponent<NPCMovement>().parentName = this.gameObject.name;
+                npcFood.transform.parent = transform.parentx;
                 //npcFood.tag = this.gameObject.name;
                 npcFoods.Add(npcFood);
             }
