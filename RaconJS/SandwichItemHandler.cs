@@ -38,6 +38,8 @@ public class SandwichItemHandler : MonoBehaviour
 		var newPos = foodItem.gameObject.transform.localPosition;
 		newPos.z = -1-index;
 		foodItem.transform.localPosition = newPos;
+		var script = foodItem.gameObject.GetComponent<NPCMovement>();
+		if(script)script.enabled = false;
 	}
 	void unstackItem(FoodItem foodItem){
 		foodItem.gameObject.transform.parent = transform.parent;
