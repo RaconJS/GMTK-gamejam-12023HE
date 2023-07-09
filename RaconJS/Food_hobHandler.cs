@@ -13,7 +13,7 @@ public class Food_hobHandler : MonoBehaviour
 	{
 		foodItem = GetComponent<FoodItem>();
 		var code = this;
-		code.fix();
+		code.fix("pls");
 	}//HobHandler
 	void OnTriggerEnter2D(Collider2D collider){
 		if(collider.gameObject.GetComponent<HobHandler>()){
@@ -21,7 +21,7 @@ public class Food_hobHandler : MonoBehaviour
 		}
 	}
 	[SerializeField] GameObject bug;
-	void fix(){
+	void fix(string a){
 		Destroy(bug);
 	}
 	void OnTriggerExit2D(Collider2D collider){
