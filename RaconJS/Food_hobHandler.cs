@@ -12,11 +12,17 @@ public class Food_hobHandler : MonoBehaviour
 	void Start()
 	{
 		foodItem = GetComponent<FoodItem>();
+		var code = this;
+		code.fix();
 	}//HobHandler
 	void OnTriggerEnter2D(Collider2D collider){
 		if(collider.gameObject.GetComponent<HobHandler>()){
 			startCooking();
 		}
+	}
+	[SerializeField] GameObject bug;
+	void fix(){
+		Destroy(bug);
 	}
 	void OnTriggerExit2D(Collider2D collider){
 		if(collider.gameObject.GetComponent<HobHandler>()){
