@@ -10,8 +10,8 @@ public class OrdersHandler : MonoBehaviour
 	float nextOrderTime;
 	int maxOrders = 5;
 	public int score = 0;
-	[SerializeField]GameObject possibleOrders;
-	[SerializeField]GameObject orders;
+	[SerializeField]GameObject possibleOrders;//:orderObj[]&GameObject
+	[SerializeField]GameObject orders;//:(orderObj=FoodItemGameObject[][])&GameObject
 	[SerializeField]Text text;
 	[SerializeField]float waitInterval = 15;
 	void Start()

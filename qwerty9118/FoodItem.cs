@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class FoodItem : MonoBehaviour
 {
+    [Header("foodStates")]
     public string id = "";
     [SerializeField] int cutLevel = 0;
     [SerializeField] int cookedLevel = 0;
+
     private int oldCutLevel = 0;
     private int oldCookedLevel = 0;
     private bool genCut1 = false;
@@ -35,7 +37,12 @@ public class FoodItem : MonoBehaviour
         isMoving = false;
         movement.enabled=false;
     }
-
+    public bool compair(FoodItem foodItem){
+        if(foodItem.id!=id)return false;
+        if(foodItem.cookedLevel!=foodItem.cookedLevel)return false;
+        if(foodItem.cutLevel!=foodItem.cutLevel)return false;
+        return true;
+    }
     // Start is called before the first frame update
     void Start()
     {
