@@ -42,7 +42,7 @@ public class NPCMovement : MonoBehaviour
 
                 framesTravelled = 0;
                 nextPoint++;
-                if (nextPoint <= GameObject.Find(parentName).GetComponent<SpawnTrail>().trail.Count)
+                if (nextPoint < GameObject.Find(parentName).GetComponent<SpawnTrail>().trail.Count)
                 {
                     step = (GameObject.Find(parentName).GetComponent<SpawnTrail>().trail[nextPoint] - transform.position) / framesForTrail;
                 }
