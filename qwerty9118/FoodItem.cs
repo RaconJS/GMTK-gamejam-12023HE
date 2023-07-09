@@ -111,7 +111,6 @@ public class FoodItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(id == null)
         if(dontSelectFrames>0)dontSelectFrames--;
         if (oldCutLevel != cutLevel || oldCookedLevel != cookedLevel)
         {
