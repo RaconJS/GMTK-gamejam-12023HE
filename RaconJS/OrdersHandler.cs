@@ -34,9 +34,10 @@ public class OrdersHandler : MonoBehaviour
 				var recipe = order.GetComponent<SandwichRecipe>();
 				var sandwichItem = collider.gameObject.GetComponent<SandwichItemHandler>();
 				if(recipe&&sandwichItem){
-					rootCompletedFood = sandwichItem.baseSandwich?.gameObject;
+					rootCompletedFood = sandwichItem.getRootObj();
+					if(rootCompletedFood!=collider.gameObject)return;
 					if(!rootCompletedFood)rootCompletedFood = collider.gameObject;
-					if(sandwichItem.isRecipe(recipe))
+					if(sandwichItem.isRecipe(order))
 					{
 						Debug.Log("found recipe");
 						found = true;

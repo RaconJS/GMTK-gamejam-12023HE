@@ -5,85 +5,67 @@ using UnityEngine;
 public class SandwichItemHandler : MonoBehaviour
 {
 	// Start is called before the first frame update
-	public SandwichItemHandler baseSandwich = null;//only on sandwich non-bases
-	PlayerMovement a;
-	[SerializeField]bool isSandwichBase = false;//is true if this is the bottom of the sandwich and there are items on top of this
-	public SandwichItemHandler topOfSandwich = null;//only on sandwich bases
-	[SerializeField]bool isBread;
 	KeyCode placeItem_key = KeyCode.Space;
+	/*SandwichItemHandler topOfSandwich{get{
+		return transform.GetChild(transform.childCount-1).GetComponent<SandwichItemHandler>();
+	}}*/
 	//Components
+	public bool isBread;
+	PlayerMovement a;
 	FoodItem foodItem;
 	void Start()
 	{
 		foodItem = GetComponent<FoodItem>();
 	}
-    public bool isRecipe(SandwichRecipe sandwichRecipe){
-    	if(!isSandwichBase && baseSandwich)return baseSandwich.isRecipe(sandwichRecipe);
-    	if(!isSandwichBase)return false;//single item//baseSandwich.isRecipe(sandwichRecipe);
-    	var transform = topOfSandwich.gameObject.transform;
-    	var list = new string[sandwichRecipe.list.Length];
-    	{//reverse list
-    		int i = list.Length-1;
-    		foreach(var foodItemId in sandwichRecipe.list)list[i--] = foodItemId;
-    	}
-    	foreach(var foodItemId in list){
-    		if(foodItemId != transform.gameObject.GetComponent<FoodItem>().id)return false;
-    		transform = transform.parent;
+    public bool isRecipe(GameObject sandwichRecipe){
+    	if(sandwichRecipe.transform.childCount!=transform.childCount+1)return false;
+    	for(var i=0;i<transform.childCount+1;i++){
+    		var foodItem_recipe = sandwichRecipe.transform.GetChild(i).GetComponent<FoodItem>();
+    		FoodItem foodItem_sandwich;
+    		if(i==0)foodItem_sandwich = foodItem;
+    		else foodItem_sandwich = transform.GetChild(i-1).GetComponent<FoodItem>();
+    		if(foodItem_recipe.id != foodItem_sandwich.id)return false;
     	}
     	return true;
     }
-	void stackItem(SandwichItemHandler sandwichItem){
-		sandwichItem.gameObject.transform.parent = topOfSandwich.gameObject.transform;
-		sandwichItem.baseSandwich = this;
-		var newPos = sandwichItem.gameObject.transform.localPosition;
-		newPos.z = -1;
-		sandwichItem.gameObject.transform.localPosition = newPos;
-		topOfSandwich = sandwichItem;
+    public GameObject getRootObj(){
+    	if(transform.parent&&transform.parent.gameObject.GetComponent<SandwichItemHandler>())return transform.parent.gameObject;
+    	else return gameObject;
+    }
+	void stackItem(FoodItem foodItem){
+		var index = transform.childCount;
+		foodItem.gameObject.transform.parent = transform;//topOfSandwich.gameObject.transform;
+		var newPos = foodItem.gameObject.transform.localPosition;
+		newPos.z = -1-index;
+		foodItem.transform.localPosition = newPos;
 	}
-	void unstackItem(SandwichItemHandler sandwichItem){
-		var parent = sandwichItem.gameObject.transform.parent = gameObject.transform.parent;
-		var newPos = sandwichItem.gameObject.transform.position;
-		newPos.z = parent?transform.parent.position.z-1f:transform.position.z;
-		sandwichItem.gameObject.transform.position = newPos;
-		sandwichItem.baseSandwich = null;
-		var transform1 = sandwichItem.gameObject.transform;
-		while(transform1.childCount>0){
-			transform1 = transform1.GetChild(0);
-			SandwichItemHandler script;
-			if(script=transform1.GetComponent<SandwichItemHandler>())script.baseSandwich = sandwichItem;
-			else break;
-		}
+	void unstackItem(FoodItem foodItem){
+		foodItem.gameObject.transform.parent = transform.parent;
+		var index = transform.childCount;
+		var newPos = foodItem.gameObject.transform.position;
+		newPos.z+=index;//assume: item is on layer 0
+		foodItem.gameObject.transform.position = newPos;
 	}
 	private void OnTriggerEnter2D(Collider2D collision){
 		bool isReadyToBeStacked;
 		SandwichItemHandler sandwichItem=collision.gameObject.GetComponent<SandwichItemHandler>();
-		isReadyToBeStacked = sandwichItem!=null&&!sandwichItem.isSandwichBase&&!sandwichItem.baseSandwich;
+		isReadyToBeStacked = sandwichItem!=null;
 		if(isReadyToBeStacked){
-			if(isBread&&!foodItem.isMoving&&!sandwichItem.isSandwichBase&&!isSandwichBase){
-				isSandwichBase = true;
-				topOfSandwich = this;
-			}
 			//foodItem.isMoving||isSandwichBase||
-			if(isSandwichBase&&baseSandwich!=sandwichItem){
-				stackItem(sandwichItem);
+			if(
+				isBread
+				&&(!transform.parent||transform.parent.gameObject.GetComponent<SandwichItemHandler>()==null)
+				&&sandwichItem.transform.childCount==0
+				&&sandwichItem.transform.parent!=transform
+			){
+				stackItem(sandwichItem.foodItem);
 			}
 		}
 	}
 	private void OnTriggerExit2D(Collider2D collision){
 		SandwichItemHandler sandwichItem=collision.gameObject.GetComponent<SandwichItemHandler>();
-		if(isSandwichBase)
-		if(sandwichItem&&sandwichItem.baseSandwich==this){//assume: collision.gameObject's parent has SandwichItemHandler
-			var parent = sandwichItem.gameObject.transform.parent;
-			unstackItem(sandwichItem);
-			bool hasParent = false;
-			if(parent){
-				topOfSandwich = parent.gameObject.GetComponent<SandwichItemHandler>();
-				hasParent = topOfSandwich!=this;
-			}
-			if(!hasParent){
-				topOfSandwich = null;
-				isSandwichBase = false;
-			}
+		if(isBread&&sandwichItem&&sandwichItem.transform.parent==transform){//assume: collision.gameObject's parent has SandwichItemHandler
+			unstackItem(sandwichItem.foodItem);
 		}
 	}
 	// Update is called once per frame
@@ -91,11 +73,12 @@ public class SandwichItemHandler : MonoBehaviour
 	void Update()
 	{
 		//space -> select the bottom of the sandwich for moving
+		SandwichItemHandler script;
 		if(isSelecting){
-			if(isSandwichBase)
-				topOfSandwich.foodItem.selectThisItem(foodItem);
-			else if(baseSandwich)
-				baseSandwich.foodItem.selectThisItem(foodItem);
+			if(transform.childCount>0)
+				transform.GetChild(transform.childCount-1).GetComponent<SandwichItemHandler>().foodItem.selectThisItem(foodItem);
+			else if(script=transform.parent.GetComponent<SandwichItemHandler>())
+				script.foodItem.selectThisItem(foodItem);
 			isSelecting = false;
 		}
 		if(foodItem.isMoving&&Input.GetKeyDown(placeItem_key)){

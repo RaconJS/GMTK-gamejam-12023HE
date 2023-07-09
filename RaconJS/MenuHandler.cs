@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MenuHandler : MonoBehaviour
 {
-    [Header("scenes")]
-    /*[SerializeField]*/string mainMenu;
-    /*[SerializeField]*/string mainGame;
     public void startGame(){
-        SceneManager.LoadScene(SceneManager.GetSceneByName("mainGame").buildIndex);
+        SceneManager.LoadScene("mainGame");//, LoadSceneMode.Additive);
     }
     public void gotoMainMenu(){
-        SceneManager.LoadScene(SceneManager.GetSceneByName("mainMenu").buildIndex);
+        SceneManager.LoadScene("mainMenu");//, LoadSceneMode.Additive);
+    }
+    public void gotoPauseMenu(){
+        SceneManager.LoadScene("pauseMenu");//, LoadSceneMode.Additive);
     }
 }
