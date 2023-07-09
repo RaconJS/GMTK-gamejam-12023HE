@@ -63,7 +63,10 @@ public class NPCMovement : MonoBehaviour
     private void OnBecameInvisible()
     {
 
-        Destroy(gameObject);
+        if (parentName != "")
+        {
+            Destroy(this.gameObject);
+        }
 
     }
 
