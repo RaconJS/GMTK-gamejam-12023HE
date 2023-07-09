@@ -16,6 +16,7 @@ public class NPCMovement : MonoBehaviour
     {
 
         GetComponent<FoodItem>().setId(parentName);
+        transform.parent = GameObject.Find("foods").transform;
 
     }
 
