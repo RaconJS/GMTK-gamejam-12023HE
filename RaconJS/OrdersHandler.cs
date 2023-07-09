@@ -64,16 +64,23 @@ public class OrdersHandler : MonoBehaviour
 	{
 		
 	}
-	void addOrder(){
-
+	void addOrder(Transform orderPos){
+		for(var i = 0f;i < orderPos.childCount; i++){
+			var foodPos = orderPos.GetChild((int)i);
+			var foodObj = foodPos.gameObject;
+			foodObj.GetComponent<Collider2D>().enabled = false;
+			foodObj.GetComponent<SpriteRenderer>().enabled = true;
+			float xScale = 1f;
+			foodPos.localPosition=new Vector3((orders.transform.childCount-1)*xScale,i*1f,-1);
+		}
 	}
 	void FixedUpdate(){
 		if(Time.time>nextOrderTime){
 			if(orders.transform.childCount>=maxOrders){
-				score --;
+				score--;
 			}
-			else Instantiate(possibleOrders.transform.GetChild(Random.Range(0,possibleOrders.transform.childCount-1)),orders.transform);
-			//addOrder();
+			else addOrder(Instantiate(possibleOrders.transform.GetChild(Random.Range(0,possibleOrders.transform.childCount-1)),orders.transform));
+			;
 			nextOrderTime =Time.time+waitInterval;
 		}
 		text.text = "score:"+score;
