@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 5906587ea932c352490d77a34312b25f, type: 3}
+    - target: {fileID: 8662955008452556666, guid: 9ddf7e21b5db5e04985cb6391e03a658, type: 3}
+      propertyPath: isBread
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9135841323767298317, guid: 9ddf7e21b5db5e04985cb6391e03a658, type: 3}
       propertyPath: m_Name
       value: Pasta
