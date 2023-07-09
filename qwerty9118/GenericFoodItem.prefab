@@ -98,7 +98,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9135841323767298317}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -150,8 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b22ebee824b554aa886c2c287fcb114b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSandwich: {fileID: 0}
-  topOfSandwich: {fileID: 0}
   isBread: 0
 --- !u!50 &8452159134806995438
 Rigidbody2D:
@@ -186,6 +184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2e24e7548712a444877ffdc4e083347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasMoved: 0
+  firstPos: {x: 0, y: 0}
+  lastPos: {x: 0, y: 0}
   trail: []
   npcFoods: []
 --- !u!114 &-7824330984965800429
@@ -200,3 +201,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7896379419541804eb42bc1e8ec52b87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentName: 
