@@ -47,6 +47,8 @@ public class FoodItem : MonoBehaviour
     void Start()
     {
 
+        id = gameObject.name;
+
         movement = GetComponent<PlayerMovement>();
         foodRend = GetComponent<SpriteRenderer>();
 
@@ -77,7 +79,7 @@ public class FoodItem : MonoBehaviour
             {
 
                 this.foodStateTextures[cut, cook] = Resources.Load(
-                    "Food/" + this.gameObject.name + cut + cook,
+                    "Food/" + this.id + cut + cook,
                     typeof(Sprite)) as Sprite;
 
                 if (this.foodStateTextures[cut, cook] == null)
